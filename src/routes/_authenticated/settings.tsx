@@ -42,7 +42,7 @@ function SettingsPage() {
       if (!auth.user) throw new Error("Not signed in");
       const { error } = await supabase
         .from("profiles")
-        .upsert({ id: auth.user.id, email: auth.user.email, full_name: fullName, work_start: workStart, work_end: workEnd });
+        .upsert({ id: auth.user.id, email: auth.user.email ?? null, full_name: fullName, work_start: workStart, work_end: workEnd });
       if (error) throw error;
     },
     onSuccess: () => {
