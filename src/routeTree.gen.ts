@@ -13,6 +13,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedEmailsRouteImport } from './routes/_authenticated/emails'
+import { Route as AuthenticatedMeetingsRouteImport } from './routes/_authenticated/meetings'
 import { Route as AuthenticatedTasksRouteImport } from './routes/_authenticated/tasks'
 
 const IndexRoute = IndexRouteImport.update({
@@ -34,6 +36,16 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedEmailsRoute = AuthenticatedEmailsRouteImport.update({
+  id: '/emails',
+  path: '/emails',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedMeetingsRoute = AuthenticatedMeetingsRouteImport.update({
+  id: '/meetings',
+  path: '/meetings',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedTasksRoute = AuthenticatedTasksRouteImport.update({
   id: '/tasks',
   path: '/tasks',
@@ -44,12 +56,16 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/emails': typeof AuthenticatedEmailsRoute
+  '/meetings': typeof AuthenticatedMeetingsRoute
   '/tasks': typeof AuthenticatedTasksRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/emails': typeof AuthenticatedEmailsRoute
+  '/meetings': typeof AuthenticatedMeetingsRoute
   '/tasks': typeof AuthenticatedTasksRoute
 }
 export interface FileRoutesById {
@@ -58,19 +74,23 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/emails': typeof AuthenticatedEmailsRoute
+  '/_authenticated/meetings': typeof AuthenticatedMeetingsRoute
   '/_authenticated/tasks': typeof AuthenticatedTasksRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/dashboard' | '/tasks'
+  fullPaths: '/' | '/auth' | '/dashboard' | '/emails' | '/meetings' | '/tasks'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/dashboard' | '/tasks'
+  to: '/' | '/auth' | '/dashboard' | '/emails' | '/meetings' | '/tasks'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
     | '/_authenticated/dashboard'
+    | '/_authenticated/emails'
+    | '/_authenticated/meetings'
     | '/_authenticated/tasks'
   fileRoutesById: FileRoutesById
 }
@@ -110,6 +130,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/emails': {
+      id: '/_authenticated/emails'
+      path: '/emails'
+      fullPath: '/emails'
+      preLoaderRoute: typeof AuthenticatedEmailsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/meetings': {
+      id: '/_authenticated/meetings'
+      path: '/meetings'
+      fullPath: '/meetings'
+      preLoaderRoute: typeof AuthenticatedMeetingsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/tasks': {
       id: '/_authenticated/tasks'
       path: '/tasks'
@@ -122,11 +156,15 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedEmailsRoute: typeof AuthenticatedEmailsRoute
+  AuthenticatedMeetingsRoute: typeof AuthenticatedMeetingsRoute
   AuthenticatedTasksRoute: typeof AuthenticatedTasksRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedEmailsRoute: AuthenticatedEmailsRoute,
+  AuthenticatedMeetingsRoute: AuthenticatedMeetingsRoute,
   AuthenticatedTasksRoute: AuthenticatedTasksRoute,
 }
 
