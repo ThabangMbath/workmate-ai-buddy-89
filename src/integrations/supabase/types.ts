@@ -14,7 +14,223 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      emails: {
+        Row: {
+          body: string
+          created_at: string
+          id: string
+          key_points: string | null
+          meeting_id: string | null
+          purpose: string | null
+          recipient: string | null
+          subject: string | null
+          task_id: string | null
+          tone: string
+          user_id: string
+        }
+        Insert: {
+          body?: string
+          created_at?: string
+          id?: string
+          key_points?: string | null
+          meeting_id?: string | null
+          purpose?: string | null
+          recipient?: string | null
+          subject?: string | null
+          task_id?: string | null
+          tone?: string
+          user_id?: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          id?: string
+          key_points?: string | null
+          meeting_id?: string | null
+          purpose?: string | null
+          recipient?: string | null
+          subject?: string | null
+          task_id?: string | null
+          tone?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "emails_meeting_id_fkey"
+            columns: ["meeting_id"]
+            isOneToOne: false
+            referencedRelation: "meetings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "emails_task_id_fkey"
+            columns: ["task_id"]
+            isOneToOne: false
+            referencedRelation: "tasks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      meetings: {
+        Row: {
+          action_items: Json
+          created_at: string
+          decisions: Json
+          id: string
+          key_points: Json
+          raw_notes: string
+          summary: string | null
+          title: string
+          user_id: string
+        }
+        Insert: {
+          action_items?: Json
+          created_at?: string
+          decisions?: Json
+          id?: string
+          key_points?: Json
+          raw_notes: string
+          summary?: string | null
+          title?: string
+          user_id?: string
+        }
+        Update: {
+          action_items?: Json
+          created_at?: string
+          decisions?: Json
+          id?: string
+          key_points?: Json
+          raw_notes?: string
+          summary?: string | null
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          work_end: string
+          work_start: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id: string
+          work_end?: string
+          work_start?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          work_end?: string
+          work_start?: string
+        }
+        Relationships: []
+      }
+      schedule_items: {
+        Row: {
+          created_at: string
+          day: string
+          done: boolean
+          end_time: string
+          id: string
+          notes: string | null
+          start_time: string
+          task_id: string | null
+          title: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          day: string
+          done?: boolean
+          end_time: string
+          id?: string
+          notes?: string | null
+          start_time: string
+          task_id?: string | null
+          title: string
+          user_id?: string
+        }
+        Update: {
+          created_at?: string
+          day?: string
+          done?: boolean
+          end_time?: string
+          id?: string
+          notes?: string | null
+          start_time?: string
+          task_id?: string | null
+          title?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "schedule_items_task_id_fkey"
+            columns: ["task_id"]
+            isOneToOne: false
+            referencedRelation: "tasks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tasks: {
+        Row: {
+          created_at: string
+          description: string | null
+          due_date: string | null
+          estimated_minutes: number
+          id: string
+          meeting_id: string | null
+          owner_name: string | null
+          priority: string
+          status: string
+          title: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          due_date?: string | null
+          estimated_minutes?: number
+          id?: string
+          meeting_id?: string | null
+          owner_name?: string | null
+          priority?: string
+          status?: string
+          title: string
+          user_id?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          due_date?: string | null
+          estimated_minutes?: number
+          id?: string
+          meeting_id?: string | null
+          owner_name?: string | null
+          priority?: string
+          status?: string
+          title?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tasks_meeting_id_fkey"
+            columns: ["meeting_id"]
+            isOneToOne: false
+            referencedRelation: "meetings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
