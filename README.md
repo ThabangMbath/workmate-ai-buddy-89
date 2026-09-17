@@ -1,301 +1,35 @@
-# WorkMate Assistant
+# WorkMate AI
 
-Build a complete MVP called WorkMate AI, an AI Workplace Productivity Assistant.
+WorkMate AI is an AI-powered workplace productivity assistant. It turns messy meeting notes into structured summaries and tasks, drafts emails for you, and builds a work schedule around your priorities — all in one place.
 
-IMPORTANT: Optimize for low Lovable credit usage. Build the core application in one implementation. Do not add unnecessary animations, complex UI, extra pages, advanced analytics, or features not listed below. Prioritize working functionality over visual perfection. Reuse components and keep the code simple and maintainable.
+## Features
 
-Core Features
+- **AI Email Generator** — describe the purpose, recipient and key points, pick a tone (Formal, Friendly, Persuasive or Professional), and get a ready-to-send draft you can edit, copy and save.
+- **Meeting Notes Summarizer** — paste raw meeting notes and get a title, summary, key points, decisions and action items. Every action item can be added to your task list in one click, and you can generate a follow-up email from the meeting.
+- **Task Planner** — manage tasks with priority (Critical / High / Medium / Low), status, due date and estimated duration. Create, edit, complete and delete.
+- **AI Scheduler** — set your working hours and let the AI build a daily or weekly schedule from your open tasks, respecting priorities and deadlines.
+- **Dashboard** — today's tasks, upcoming deadlines, today's schedule and recent meetings, plus quick actions.
+- **AI Assistant** — a chat panel that answers questions about your own tasks, meetings, schedule and emails ("What are my upcoming deadlines?").
+- **Accounts** — sign up with email or Google. Each user sees only their own data.
 
-1. Smart Email Generator
+## How it fits together
 
-Create a page where users enter:
+```text
+Meeting notes → AI summary → action items → tasks → AI schedule → follow-up email
+```
 
-Email purpose
+The AI only works with what you give it: it never invents decisions, deadlines or names that aren't in your notes, and everything it generates stays editable.
 
-Recipient
+## Tech stack
 
-Key points
+- TanStack Start (React + TypeScript)
+- Tailwind CSS
+- Lovable Cloud (database, authentication, storage)
+- Lovable AI
 
-Tone
+## Getting started
 
-Tone options:
-
-Formal
-
-Friendly
-
-Persuasive
-
-Professional
-
-Use AI to generate the email.
-
-Actions:
-
-Generate
-
-Regenerate
-
-Edit
-
-Copy
-
-Save generated emails to the database.
-
-2. Meeting Notes Summarizer
-
-Create a page where users paste meeting notes.
-
-Use AI to extract:
-
-Summary
-
-Key points
-
-Decisions
-
-Action items
-
-Deadlines
-
-Responsible person
-
-Each action item must have an Add to Tasks button.
-
-Add a Generate Follow-Up Email button that creates an email from the meeting information.
-
-Save meetings to the database.
-
-3. Task Planner
-
-Create a simple task manager.
-
-Tasks must contain:
-
-Title
-
-Description
-
-Priority
-
-Status
-
-Due date
-
-Estimated duration
-
-Priority:
-
-Critical
-
-High
-
-Medium
-
-Low
-
-Status:
-
-To Do
-
-In Progress
-
-Completed
-
-Allow users to create, edit, delete, and complete tasks.
-
-4. AI Scheduler
-
-Create a Schedule page.
-
-The user can enter their working hours.
-
-Use existing tasks, priorities, deadlines, and estimated durations to generate a simple daily or weekly schedule.
-
-Allow users to:
-
-Generate schedule
-
-Regenerate schedule
-
-Mark tasks complete
-
-Edit schedule items
-
-Do not build complex calendar integrations for the MVP.
-
-Dashboard
-
-Create one simple dashboard showing:
-
-Today's tasks
-
-Upcoming deadlines
-
-Today's schedule
-
-Recent meetings
-
-Quick actions
-
-Quick actions:
-
-Generate Email
-
-Summarize Meeting
-
-Add Task
-
-Generate Schedule
-
-IMPORTANT FEATURE INTEGRATION
-
-All features must use the same database and user data.
-
-Workflow:
-
-Meeting Notes
-→ AI Summary
-→ Action Items
-→ Tasks
-→ AI Prioritization
-→ Schedule
-→ Follow-Up Email
-
-Also allow tasks to generate related emails.
-
-AI Assistant
-
-Add a simple AI chat panel where users can ask questions about their tasks, meetings, schedules, and emails.
-
-Examples:
-
-"What tasks do I have today?"
-
-"Create a schedule for tomorrow."
-
-"Summarize my latest meeting."
-
-"Write a follow-up email."
-
-Keep this simple for the MVP.
-
-Authentication & Database
-
-Implement basic authentication and user-specific data.
-
-Create database tables for:
-
-Users
-
-Emails
-
-Meetings
-
-Tasks
-
-Schedule Items
-
-Users must only see their own data.
-
-UI
-
-Use a clean, modern, responsive SaaS design.
-
-Use one reusable layout with:
-
-Sidebar
-
-Header
-
-Cards
-
-Forms
-
-Tables/lists
-
-Simple calendar/schedule
-
-Navigation:
-Dashboard | Emails | Meetings | Tasks | Schedule | AI Assistant | Settings
-
-Do NOT spend credits on:
-
-Complex animations
-
-Landing page marketing sections
-
-Advanced analytics
-
-Dark mode
-
-Calendar integrations
-
-Team collaboration
-
-Notifications
-
-Complex drag-and-drop
-
-Unnecessary decorative components
-
-AI Rules
-
-AI should:
-
-Never invent meeting decisions or deadlines.
-
-Clearly separate extracted information from AI suggestions.
-
-Allow users to edit AI-generated content.
-
-Handle missing information gracefully.
-
-Development Priority
-
-Build in this order:
-
-Database and authentication
-
-Main layout/navigation
-
-Task management
-
-Meeting summarizer
-
-Email generator
-
-AI scheduler
-
-Feature integration
-
-Simple AI assistant
-
-Basic responsive styling
-
-Do not stop after creating the UI. Implement the actual functionality, database operations, and AI interactions.
-
-Before finishing, test the main workflow:
-
-Meeting Notes → Action Items → Tasks → Schedule → Follow-Up Email
-
-Make sure this complete workflow works end-to-end.
-
-This project was built with [Lovable](https://lovable.dev).
-
-**Live app**: https://workmate-ai-buddy-89.lovable.app
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/389dffbf-02fb-45ed-a699-9e433ed83f76).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+Run it locally:
 
 ```sh
 git clone <this-repository-url>
@@ -303,3 +37,16 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+The hosted version is available at [workmate-ai-buddy-89.lovable.app](https://workmate-ai-buddy-89.lovable.app).
+
+## Project structure
+
+- `src/routes/` — the app's pages (dashboard, emails, meetings, tasks, schedule, assistant, settings)
+- `src/lib/` — AI server functions and shared data helpers
+- `drizzle/migrations/` — database schema migrations
+
+## Notes
+
+- New accounts must confirm their email address before signing in.
+- All data is private per user — tasks, meetings, emails and schedules are only visible to the account that created them.
